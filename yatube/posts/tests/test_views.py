@@ -166,7 +166,7 @@ class PostPagesTests(TestCase):
                 self.assertIsInstance(form_field, field_class)
 
     def test_post_appeared_index_group_profile(self):
-        """Тестовый пост на главной странице, 
+        """Тестовый пост на главной странице,
         странице группы, в профаиле."""
         pages = [
             (reverse("posts:index")),
@@ -180,7 +180,7 @@ class PostPagesTests(TestCase):
                 self.assertIn(self.post, posts)
 
     def test_post_not_appeared_group(self):
-        """Тестовый пост не появляется на странице 
+        """Тестовый пост не появляется на странице
         чужой группы, в которую он не включён."""
         response = self.authorized_client.get(
             reverse(
