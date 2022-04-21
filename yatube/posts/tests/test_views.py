@@ -242,7 +242,10 @@ class PostPagesTests(TestCase):
     def test_follow_posts(self):
         """Посты отобразились у подписчика и наоборот, если не подписан."""
         self.authorized_client.get(
-            reverse('posts:profile_follow', kwargs={'username': self.follower}))
+            reverse(
+                'posts:profile_follow',
+                kwargs={'username': self.follower})
+        )
         new_post = Post.objects.create(
             text=self.post.text,
             author=self.follower,

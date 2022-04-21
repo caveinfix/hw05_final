@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from core.models import CreatedModel
 
 User = get_user_model()
 
@@ -49,9 +48,9 @@ class Comment(models.Model):
         related_name="comments",
     )
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, 
+        User, on_delete=models.CASCADE,
         related_name="comments"
-        )
+    )
     text = models.TextField(blank=False)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -64,13 +63,11 @@ class Comment(models.Model):
 
 class Follow(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, 
+        User, on_delete=models.CASCADE,
         related_name="follower"
-        )
+    )
 
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, 
+        User, on_delete=models.CASCADE,
         related_name="following"
-        )
-
-    
+    )
