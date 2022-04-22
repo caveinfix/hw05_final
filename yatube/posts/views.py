@@ -7,9 +7,10 @@ from .utils import get_paginator
 
 
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.select_related("group").all()
     page_obj = get_paginator(request, posts)
     context = {
+        "index": True,
         "page_obj": page_obj,
     }
     return render(request, "posts/index.html", context)
@@ -105,7 +106,8 @@ def follow_index(request):
     posts = Post.objects.filter(author__following__user=request.user)
     page_obj = get_paginator(request, posts)
     context = {
-        'page_obj': page_obj,
+        "follow": True,
+        "page_obj": page_obj,
     }
     return render(request, 'posts/follow.html', context)
 

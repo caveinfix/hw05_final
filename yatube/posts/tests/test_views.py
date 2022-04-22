@@ -8,8 +8,8 @@ from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
-from yatube.settings import PAGE_SIZE
 
+from yatube.settings import PAGE_SIZE
 from ..models import Follow, Group, Post
 
 User = get_user_model()
