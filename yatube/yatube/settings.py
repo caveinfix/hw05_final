@@ -23,13 +23,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "4wy+dt!_pmwj*p8nwd$40+g_owlaj**-me$bxmd#vz92j!^w!@"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
+    '51.250.31.9',
     'localhost',
     '127.0.0.1',
     '[::1]',
     'testserver',
+    'www.caveinfix.pythonanywhere.com',
+    'caveinfix.pythonanywhere.com',
 ]
 
 
@@ -47,6 +50,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "about.apps.AboutConfig",
     'sorl.thumbnail',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +61,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = "yatube.urls"
@@ -154,3 +159,7 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
