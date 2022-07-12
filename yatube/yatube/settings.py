@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,8 +31,9 @@ SECRET_KEY = "4wy+dt!_pmwj*p8nwd$40+g_owlaj**-me$bxmd#vz92j!^w!@"
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '51.250.31.9',
+    '158.160.4.42',
     'localhost',
+    'yatubes.ddns.net',
     '127.0.0.1',
     '[::1]',
     'testserver',
@@ -95,8 +101,14 @@ WSGI_APPLICATION = "yatube.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+       # "ENGINE": "django.db.backends.sqlite3",
+       # "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),	
     }
 }
 
@@ -141,7 +153,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 
 LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "posts:index"
@@ -163,3 +175,10 @@ CACHES = {
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+# скопируйте dsn из вашего личного кабинета на Sentry: 
+# Projects → <имя-проекта> → Client Keys
+sentry_sdk.init(
+    dsn="https://631cbb94c0b44bec8ee216208e301562@o1314336.ingest.sentry.io/6565270", 
+    integrations=[DjangoIntegration()],
+) 
