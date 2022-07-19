@@ -1,0 +1,1611 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.11 (Ubuntu 12.11-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.11 (Ubuntu 12.11-0ubuntu0.20.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO yatube_user;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO yatube_user;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO yatube_user;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO yatube_user;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO yatube_user;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO yatube_user;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(150) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO yatube_user;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO yatube_user;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO yatube_user;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO yatube_user;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO yatube_user;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO yatube_user;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO yatube_user;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO yatube_user;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO yatube_user;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO yatube_user;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO yatube_user;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO yatube_user;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO yatube_user;
+
+--
+-- Name: posts_comment; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.posts_comment (
+    id integer NOT NULL,
+    text text NOT NULL,
+    created timestamp with time zone NOT NULL,
+    author_id integer NOT NULL,
+    post_id integer
+);
+
+
+ALTER TABLE public.posts_comment OWNER TO yatube_user;
+
+--
+-- Name: posts_comment_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.posts_comment_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.posts_comment_id_seq OWNER TO yatube_user;
+
+--
+-- Name: posts_comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.posts_comment_id_seq OWNED BY public.posts_comment.id;
+
+
+--
+-- Name: posts_follow; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.posts_follow (
+    id integer NOT NULL,
+    author_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+ALTER TABLE public.posts_follow OWNER TO yatube_user;
+
+--
+-- Name: posts_follow_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.posts_follow_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.posts_follow_id_seq OWNER TO yatube_user;
+
+--
+-- Name: posts_follow_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.posts_follow_id_seq OWNED BY public.posts_follow.id;
+
+
+--
+-- Name: posts_group; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.posts_group (
+    id integer NOT NULL,
+    title character varying(200) NOT NULL,
+    slug character varying(150) NOT NULL,
+    description text NOT NULL
+);
+
+
+ALTER TABLE public.posts_group OWNER TO yatube_user;
+
+--
+-- Name: posts_group_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.posts_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.posts_group_id_seq OWNER TO yatube_user;
+
+--
+-- Name: posts_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.posts_group_id_seq OWNED BY public.posts_group.id;
+
+
+--
+-- Name: posts_post; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.posts_post (
+    id integer NOT NULL,
+    text text NOT NULL,
+    pub_date timestamp with time zone NOT NULL,
+    author_id integer NOT NULL,
+    group_id integer,
+    image character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.posts_post OWNER TO yatube_user;
+
+--
+-- Name: posts_post_id_seq; Type: SEQUENCE; Schema: public; Owner: yatube_user
+--
+
+CREATE SEQUENCE public.posts_post_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.posts_post_id_seq OWNER TO yatube_user;
+
+--
+-- Name: posts_post_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yatube_user
+--
+
+ALTER SEQUENCE public.posts_post_id_seq OWNED BY public.posts_post.id;
+
+
+--
+-- Name: thumbnail_kvstore; Type: TABLE; Schema: public; Owner: yatube_user
+--
+
+CREATE TABLE public.thumbnail_kvstore (
+    key character varying(200) NOT NULL,
+    value text NOT NULL
+);
+
+
+ALTER TABLE public.thumbnail_kvstore OWNER TO yatube_user;
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: posts_comment id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_comment ALTER COLUMN id SET DEFAULT nextval('public.posts_comment_id_seq'::regclass);
+
+
+--
+-- Name: posts_follow id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_follow ALTER COLUMN id SET DEFAULT nextval('public.posts_follow_id_seq'::regclass);
+
+
+--
+-- Name: posts_group id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_group ALTER COLUMN id SET DEFAULT nextval('public.posts_group_id_seq'::regclass);
+
+
+--
+-- Name: posts_post id; Type: DEFAULT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_post ALTER COLUMN id SET DEFAULT nextval('public.posts_post_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add post	1	add_post
+2	Can change post	1	change_post
+3	Can delete post	1	delete_post
+4	Can view post	1	view_post
+5	Can add log entry	2	add_logentry
+6	Can change log entry	2	change_logentry
+7	Can delete log entry	2	delete_logentry
+8	Can view log entry	2	view_logentry
+9	Can add permission	3	add_permission
+10	Can change permission	3	change_permission
+11	Can delete permission	3	delete_permission
+12	Can view permission	3	view_permission
+13	Can add group	4	add_group
+14	Can change group	4	change_group
+15	Can delete group	4	delete_group
+16	Can view group	4	view_group
+17	Can add user	5	add_user
+18	Can change user	5	change_user
+19	Can delete user	5	delete_user
+20	Can view user	5	view_user
+21	Can add content type	6	add_contenttype
+22	Can change content type	6	change_contenttype
+23	Can delete content type	6	delete_contenttype
+24	Can view content type	6	view_contenttype
+25	Can add session	7	add_session
+26	Can change session	7	change_session
+27	Can delete session	7	delete_session
+28	Can view session	7	view_session
+29	Can add group	8	add_group
+30	Can change group	8	change_group
+31	Can delete group	8	delete_group
+32	Can view group	8	view_group
+33	Can add kv store	9	add_kvstore
+34	Can change kv store	9	change_kvstore
+35	Can delete kv store	9	delete_kvstore
+36	Can view kv store	9	view_kvstore
+37	Can add comment	10	add_comment
+38	Can change comment	10	change_comment
+39	Can delete comment	10	delete_comment
+40	Can view comment	10	view_comment
+41	Can add follow	11	add_follow
+42	Can change follow	11	change_follow
+43	Can delete follow	11	delete_follow
+44	Can view follow	11	view_follow
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+2	august	\N	f	leo	Лев	Толстой	ln@yasnaya.polyana	f	t	2019-10-05 21:37:36.487+00
+3	pbkdf2_sha256$150000$H856FYhval3r$hE8ztapoq4DiUCMXakPh9Ov7LftG43pTKu0fTsCTMao=	2022-03-11 09:29:33+00	t	admi	Philipp	P	qwer@ya.ru	t	t	2022-02-14 19:07:57+00
+8	pbkdf2_sha256$150000$3L6l9KpHIDqO$QHW6MHVkSkvkyDUdgMqyrhbWKF68VUp00Ql3QiLAVnM=	2022-04-18 15:41:10.914+00	t	admin	Philipp	Pyhonin	caveinwork@yandex.ru	t	t	2022-03-11 09:32:38+00
+12	pbkdf2_sha256$150000$rRURoHC8g9H3$/CLLuJfp/6056H1benxTSV5vaSXtm388mgVitnCoV4M=	2022-03-14 17:53:18.038+00	f	leragav	Лера	Гаврилова	leragav@gmail.com	f	t	2022-03-13 17:38:34.309+00
+13	pbkdf2_sha256$150000$PqQZ80tyrf6M$f+6QSdhL62cv6Ro0AZU5zfCTrM4D/U+ANCBgauaoRlc=	\N	f	sdfdsfds	dsdfdsf	sdfsdf	caveinwork@yandex.ru	f	t	2022-03-13 21:38:49.47+00
+14	pbkdf2_sha256$150000$k3ms9dAf8mDK$UNknaALYM1FZyrKGI5n1kZ7WzQZ9d5qdX5l1cOh7A2c=	2022-03-24 15:53:06.49+00	f	user				f	t	2022-03-24 15:52:43.608+00
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+28	2022-03-11 09:33:56.828+00	8	admin	2	[{"changed": {"fields": ["first_name", "last_name", "email"]}}]	5	3
+30	2022-03-13 17:36:28.714+00	9	Тестович	3		5	8
+31	2022-03-13 17:36:33.252+00	7	test2	3		5	8
+32	2022-03-13 17:36:38.89+00	6	test	3		5	8
+33	2022-03-13 17:36:42.994+00	11	qwqweqeq	3		5	8
+34	2022-03-13 17:36:49.388+00	10	caveinworksss	3		5	8
+35	2022-03-13 17:36:53.16+00	5	caveinworkkk	3		5	8
+36	2022-03-13 17:36:58.248+00	4	caveinwork	3		5	8
+37	2022-03-16 10:42:32.497+00	65	dsdsad	3		1	8
+38	2022-03-16 10:42:32.501+00	64	аыаы	3		1	8
+39	2022-03-16 10:42:32.503+00	63	jkjkljl	3		1	8
+40	2022-03-16 10:42:32.504+00	62	dsadas	3		1	8
+41	2022-03-16 10:42:32.506+00	61	sdasd	3		1	8
+42	2022-03-16 10:42:32.508+00	60	dasdadsada	3		1	8
+43	2022-03-16 10:42:32.509+00	59	dasda	3		1	8
+44	2022-03-16 10:42:32.511+00	58	dsadsa	3		1	8
+45	2022-03-16 10:42:32.512+00	57	dasda	3		1	8
+46	2022-03-16 10:42:32.514+00	56	dasda	3		1	8
+47	2022-03-16 10:42:32.515+00	55	dsada	3		1	8
+48	2022-03-16 10:42:32.517+00	54	dsada	3		1	8
+49	2022-03-16 10:42:32.519+00	53	dsadas	3		1	8
+50	2022-03-16 10:42:32.52+00	52	dsada	3		1	8
+51	2022-03-16 10:42:32.522+00	51	dasdsa	3		1	8
+52	2022-03-16 10:42:32.523+00	50	dsada	3		1	8
+53	2022-03-16 10:42:32.525+00	49	dasdasd	3		1	8
+54	2022-03-16 10:42:32.526+00	48	dassad	3		1	8
+55	2022-03-16 10:42:32.528+00	47	dasdasd	3		1	8
+56	2022-03-16 10:42:32.529+00	46	sdada	3		1	8
+57	2022-03-16 10:42:32.53+00	45	sdada	3		1	8
+58	2022-03-16 10:42:32.532+00	44	dsada	3		1	8
+59	2022-03-16 12:26:55.285+00	74	AAAA!!!dasdsada	3		1	8
+60	2022-03-16 12:26:55.288+00	73	AAAA!!!	3		1	8
+61	2022-03-16 12:26:55.289+00	72	AAAA!!!	3		1	8
+62	2022-03-16 12:26:55.291+00	71	AAAA	3		1	8
+63	2022-03-16 12:26:55.292+00	70	fsdfds	3		1	8
+64	2022-03-16 12:26:55.294+00	69	FSFS	3		1	8
+65	2022-03-19 09:51:11.009+00	90	Правка вью!!	3		1	8
+66	2022-03-19 09:51:11.014+00	88	Тестовый пост!!!	3		1	8
+67	2022-03-19 09:51:11.016+00	87	Филипп\r\nТест\r\nавыавыа\r\n\r\nав\r\nыаыв	3		1	8
+68	2022-03-19 09:51:11.017+00	86	sdfdsfsqsq111	3		1	8
+69	2022-03-19 09:51:11.019+00	85	dsadas	3		1	8
+70	2022-03-19 09:51:11.021+00	84	sdasddsadasd	3		1	8
+71	2022-03-19 09:51:11.025+00	83	Пост	3		1	8
+72	2022-03-19 09:51:11.027+00	82	Новая запись  15:42	3		1	8
+73	2022-03-19 09:51:11.029+00	81	Новая запись  15:38	3		1	8
+74	2022-03-19 09:51:11.031+00	80	Новая запись  15:37	3		1	8
+75	2022-03-19 09:51:11.033+00	79	Новая запись - редактирование	3		1	8
+101	2022-04-16 14:19:42.63+00	120	2	3		1	8
+123	2022-04-17 14:50:02.856+00	134	2	3		1	8
+124	2022-04-17 14:50:02.857+00	133	2121	3		1	8
+125	2022-04-17 14:50:02.859+00	132	22	3		1	8
+4	2022-02-15 18:10:39.87+00	1	Тест	1	[{"added": {}}]	8	3
+5	2022-02-15 18:24:15.461+00	2	sdffds	1	[{"added": {}}]	8	3
+6	2022-02-15 18:24:22.358+00	3	sfsfsda	1	[{"added": {}}]	8	3
+7	2022-02-16 13:12:25.252+00	3	sfsfsda	3		8	3
+8	2022-02-16 13:12:25.254+00	2	sdffds	3		8	3
+9	2022-02-16 13:12:25.256+00	1	Тест	3		8	3
+10	2022-02-16 13:13:09.625+00	4	Group-1	1	[{"added": {}}]	8	3
+11	2022-02-17 14:42:54.132+00	5	Group-2	1	[{"added": {}}]	8	3
+12	2022-02-17 14:43:23.825+00	4	Group-1	2	[{"changed": {"fields": ["slug"]}}]	8	3
+13	2022-02-17 14:43:28.208+00	5	Group-2	2	[{"changed": {"fields": ["slug"]}}]	8	3
+14	2022-02-17 14:45:22.646+00	37	Post object (37)	2	[{"changed": {"fields": ["group"]}}]	1	3
+15	2022-02-17 14:45:22.65+00	36	Post object (36)	2	[{"changed": {"fields": ["group"]}}]	1	3
+16	2022-02-17 15:09:52.53+00	4	Group-1	2	[{"changed": {"fields": ["slug"]}}]	8	3
+17	2022-02-17 15:09:59.913+00	4	Group-1	2	[]	8	3
+18	2022-02-17 15:10:06.633+00	5	Group-2	2	[{"changed": {"fields": ["slug"]}}]	8	3
+19	2022-02-17 15:11:38.963+00	35	Post object (35)	2	[{"changed": {"fields": ["group"]}}]	1	3
+20	2022-02-17 15:11:38.966+00	34	Post object (34)	2	[{"changed": {"fields": ["group"]}}]	1	3
+21	2022-02-17 15:14:03.382+00	38	Post object (38)	1	[{"added": {}}]	1	3
+22	2022-02-17 15:15:01.317+00	3	admi	2	[{"changed": {"fields": ["first_name", "last_name"]}}]	5	3
+23	2022-02-19 16:50:50.358+00	39	Post object (39)	1	[{"added": {}}]	1	3
+24	2022-03-11 09:30:39.895+00	1	admin	3		5	3
+25	2022-03-11 09:30:48.119+00	3	admin	2	[{"changed": {"fields": ["username"]}}]	5	3
+26	2022-03-11 09:31:52.545+00	3	admis	2	[{"changed": {"fields": ["username"]}}]	5	3
+27	2022-03-11 09:33:32.309+00	3	admi	2	[{"changed": {"fields": ["username"]}}]	5	3
+29	2022-03-11 09:34:39.42+00	43	Тестовый пост	1	[{"added": {}}]	1	3
+126	2022-04-17 14:50:02.86+00	131	asd	3		1	8
+127	2022-04-17 14:50:02.862+00	130	sadad	3		1	8
+128	2022-04-17 14:50:02.863+00	129	1	3		1	8
+129	2022-04-17 14:50:02.865+00	128	2222	3		1	8
+130	2022-04-17 14:50:02.866+00	127	2	3		1	8
+131	2022-04-17 14:50:02.868+00	126	1	3		1	8
+132	2022-04-17 14:50:02.869+00	125	у	3		1	8
+133	2022-04-17 14:50:02.871+00	124	1	3		1	8
+134	2022-04-17 14:50:02.872+00	123	12	3		1	8
+76	2022-03-19 09:51:11.035+00	78	Новая запись - редактирование!!	3		1	8
+77	2022-03-19 09:51:11.037+00	77	Новая запись - редактирование!	3		1	8
+78	2022-03-19 09:51:11.038+00	76	Новая запись - редактирование	3		1	8
+79	2022-03-19 09:51:11.04+00	75	Новая запись	3		1	8
+80	2022-03-19 09:51:11.042+00	68	UPDATE	3		1	8
+81	2022-03-19 09:51:11.044+00	67	dsdas UPDATE	3		1	8
+82	2022-03-19 09:51:11.046+00	66	dsda	3		1	8
+83	2022-03-19 09:51:11.047+00	43	Тестовый пост	3		1	8
+84	2022-03-24 15:45:49.375+00	6	Test group	1	[{"added": {}}]	8	8
+85	2022-03-24 15:46:22.243+00	6	Test group	2	[{"changed": {"fields": ["slug"]}}]	8	8
+86	2022-03-24 15:47:03.323+00	6	Test group	2	[{"changed": {"fields": ["description"]}}]	8	8
+87	2022-04-13 11:07:37.048+00	97	Добавление картинки	2	[{"changed": {"fields": ["image"]}}]	1	8
+88	2022-04-14 10:39:27.613+00	101	fsdfds	3		1	8
+89	2022-04-14 10:39:27.617+00	100	fsdfdsf	3		1	8
+90	2022-04-14 10:39:27.618+00	99	fsdfs	3		1	8
+91	2022-04-14 12:46:15.103+00	7	fdsf, от автора admin	3		10	8
+92	2022-04-14 12:46:15.109+00	6	fsfsd, от автора admin	3		10	8
+93	2022-04-14 12:46:15.111+00	5	fsdfds, от автора admin	3		10	8
+94	2022-04-14 12:46:15.112+00	4	Комментарий к п, от автора admin	3		10	8
+95	2022-04-14 12:46:15.113+00	3	fsfsfa, от автора admin	3		10	8
+96	2022-04-14 12:46:15.115+00	2	dsda, от автора admin	3		10	8
+97	2022-04-14 12:46:15.116+00	1	dsdas, от автора admin	3		10	8
+98	2022-04-16 13:45:12.204+00	109	rrrrrrr	1	[{"added": {}}]	1	8
+99	2022-04-16 14:19:42.625+00	122	w	3		1	8
+100	2022-04-16 14:19:42.628+00	121	1212	3		1	8
+102	2022-04-16 14:19:42.631+00	119	21212	3		1	8
+103	2022-04-16 14:19:42.632+00	118	2	3		1	8
+104	2022-04-16 14:19:42.634+00	117	22	3		1	8
+105	2022-04-16 14:19:42.636+00	116	12121	3		1	8
+106	2022-04-16 14:19:42.637+00	115	1	3		1	8
+107	2022-04-16 14:19:42.639+00	114	d2	3		1	8
+108	2022-04-16 14:19:42.641+00	113	12	3		1	8
+109	2022-04-16 14:19:42.642+00	112	sfsfs	3		1	8
+110	2022-04-16 14:19:42.644+00	111	SFS	3		1	8
+111	2022-04-16 14:19:42.645+00	110	FSDFDSFSDF	3		1	8
+112	2022-04-16 14:19:42.648+00	109	rrrrrrr	3		1	8
+113	2022-04-16 14:19:42.649+00	108	sdadasda	3		1	8
+114	2022-04-16 14:19:42.651+00	107	nnte	3		1	8
+115	2022-04-16 14:19:42.652+00	106	тест кэш -	3		1	8
+116	2022-04-16 14:19:42.654+00	105	тест кэш +	3		1	8
+117	2022-04-16 14:19:42.656+00	104	аыавы	3		1	8
+118	2022-04-16 14:19:42.657+00	103	аыва	3		1	8
+119	2022-04-16 14:19:42.658+00	102	тест кэша	3		1	8
+120	2022-04-17 14:50:02.846+00	137	212112	3		1	8
+121	2022-04-17 14:50:02.852+00	136	22	3		1	8
+122	2022-04-17 14:50:02.854+00	135	dad	3		1	8
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	posts	post
+2	admin	logentry
+3	auth	permission
+4	auth	group
+5	auth	user
+6	contenttypes	contenttype
+7	sessions	session
+8	posts	group
+9	thumbnail	kvstore
+10	posts	comment
+11	posts	follow
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2022-07-18 16:38:27.971742+00
+2	auth	0001_initial	2022-07-18 16:38:28.09836+00
+3	admin	0001_initial	2022-07-18 16:38:28.134589+00
+4	admin	0002_logentry_remove_auto_add	2022-07-18 16:38:28.146891+00
+5	admin	0003_logentry_add_action_flag_choices	2022-07-18 16:38:28.156972+00
+6	contenttypes	0002_remove_content_type_name	2022-07-18 16:38:28.172932+00
+7	auth	0002_alter_permission_name_max_length	2022-07-18 16:38:28.181494+00
+8	auth	0003_alter_user_email_max_length	2022-07-18 16:38:28.190889+00
+9	auth	0004_alter_user_username_opts	2022-07-18 16:38:28.198759+00
+10	auth	0005_alter_user_last_login_null	2022-07-18 16:38:28.206429+00
+11	auth	0006_require_contenttypes_0002	2022-07-18 16:38:28.209097+00
+12	auth	0007_alter_validators_add_error_messages	2022-07-18 16:38:28.216282+00
+13	auth	0008_alter_user_username_max_length	2022-07-18 16:38:28.228972+00
+14	auth	0009_alter_user_last_name_max_length	2022-07-18 16:38:28.237035+00
+15	auth	0010_alter_group_name_max_length	2022-07-18 16:38:28.24677+00
+16	auth	0011_update_proxy_permissions	2022-07-18 16:38:28.255582+00
+17	auth	0012_alter_user_first_name_max_length	2022-07-18 16:38:28.263413+00
+18	posts	0001_initial	2022-07-18 16:38:28.285405+00
+19	posts	0002_group	2022-07-18 16:38:28.316106+00
+20	posts	0003_auto_20220215_1849	2022-07-18 16:38:28.342061+00
+21	posts	0004_auto_20220217_1429	2022-07-18 16:38:28.35448+00
+22	posts	0005_auto_20220221_1238	2022-07-18 16:38:28.384383+00
+23	posts	0006_post_image	2022-07-18 16:38:28.393086+00
+24	posts	0007_comment	2022-07-18 16:38:28.419107+00
+25	posts	0008_auto_20220414_1202	2022-07-18 16:38:28.435633+00
+26	posts	0009_follow	2022-07-18 16:38:28.461996+00
+27	posts	0010_auto_20220423_0812	2022-07-18 16:38:28.47558+00
+28	sessions	0001_initial	2022-07-18 16:38:28.496838+00
+29	thumbnail	0001_initial	2022-07-18 16:38:28.515863+00
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+ato0m5lc3spy8mmch26je2xb7euy0zv8	NjJhNWI0NTVlYzY3MjM2ZDE5Yjg4YzY1MWUzYWFjZDVjNjA5NzY0Zjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ZjEyMzk4OWFhN2VlODQ5MDNiMmUyYmUxNGE5MjU2MjJiNGJhYzI4In0=	2019-10-15 14:42:37.187+00
+h24lgrc1t2vumy5imrhy2tkcezze6wu6	YzlkNjFjZmRmMTJlZTgxZmFiYWY1OTZhMzc2OWJmZDUwYzRiM2MxNjp7Il9hdXRoX3VzZXJfaWQiOiI3IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjZWRlZmZiNWVlZDUzOTA0ODk4NDhiNThkZmQyMDJkNjc4MTFmNThlIn0=	2022-03-20 22:35:04.535+00
+mrhvb5n01hcnemdzg7vagdwj2k45x9y2	NGYwMzYxMzVjYjEzODhkOWFlNTgyNjE4Nzk0ZjA3ZWQ4MzdkNDI3ODp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkZTVhODE1YjdhNGUyZmQ4OWNkZTM2ODIyYTMwNzkzZTE5MGVkOGY4In0=	2022-04-30 13:44:20.19+00
+mwpe4ob493se7w7mbaf903yv5zsk4w2c	NGYwMzYxMzVjYjEzODhkOWFlNTgyNjE4Nzk0ZjA3ZWQ4MzdkNDI3ODp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkZTVhODE1YjdhNGUyZmQ4OWNkZTM2ODIyYTMwNzkzZTE5MGVkOGY4In0=	2022-04-07 18:42:39.556+00
+p1mm3mou9e7ur7onsmps5wdita9gi799	NGYwMzYxMzVjYjEzODhkOWFlNTgyNjE4Nzk0ZjA3ZWQ4MzdkNDI3ODp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkZTVhODE1YjdhNGUyZmQ4OWNkZTM2ODIyYTMwNzkzZTE5MGVkOGY4In0=	2022-05-02 15:41:10.917+00
+qsqqrpujvml29fht3nqj7tm2yixvdz3u	MDJjNmUyNGQyNjY2NjgyOGY0ZjAwNzM3YjM4NWM5Yzc3NWRmZDI1Yjp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3NmFhNDliMDQ4MmZlYWZkMGM3NDBkYTZlMDFhZWVlYWNhMWNhZTRlIn0=	2022-02-28 19:08:19.006+00
+tf2exhlrocy7t2s3aiq6odg3lag8bxy7	NGYwMzYxMzVjYjEzODhkOWFlNTgyNjE4Nzk0ZjA3ZWQ4MzdkNDI3ODp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkZTVhODE1YjdhNGUyZmQ4OWNkZTM2ODIyYTMwNzkzZTE5MGVkOGY4In0=	2022-04-04 10:02:03.694+00
+tw1mb9hwm7ca4wstzsefryfh0jtcg05s	NGYwMzYxMzVjYjEzODhkOWFlNTgyNjE4Nzk0ZjA3ZWQ4MzdkNDI3ODp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkZTVhODE1YjdhNGUyZmQ4OWNkZTM2ODIyYTMwNzkzZTE5MGVkOGY4In0=	2022-04-11 19:55:10.566+00
+vj4bhcmznssrhzryfpyci6iex45vm0cu	NGYwMzYxMzVjYjEzODhkOWFlNTgyNjE4Nzk0ZjA3ZWQ4MzdkNDI3ODp7Il9hdXRoX3VzZXJfaWQiOiI4IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkZTVhODE1YjdhNGUyZmQ4OWNkZTM2ODIyYTMwNzkzZTE5MGVkOGY4In0=	2022-03-30 14:30:34.825+00
+\.
+
+
+--
+-- Data for Name: posts_comment; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.posts_comment (id, text, created, author_id, post_id) FROM stdin;
+8	Тест	2022-04-14 12:47:02.443+00	8	98
+9	dsdas	2022-04-17 15:07:10.783+00	8	97
+10	fsdfdsf	2022-04-17 15:44:57.32+00	8	37
+11	dsdas	2022-04-18 15:40:52.344+00	8	92
+12	Тест	2022-04-18 15:59:04.204+00	8	93
+13	dasd	2022-04-18 15:59:31.823+00	8	93
+14	dsda	2022-04-18 15:59:46.353+00	8	93
+15	m,.m.	2022-04-19 17:26:40.026+00	8	138
+16	,.m,.m.,	2022-04-19 17:26:43.875+00	8	138
+17	,.m,.m.	2022-04-19 17:26:46.749+00	8	138
+\.
+
+
+--
+-- Data for Name: posts_follow; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.posts_follow (id, author_id, user_id) FROM stdin;
+11	2	8
+\.
+
+
+--
+-- Data for Name: posts_group; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.posts_group (id, title, slug, description) FROM stdin;
+4	Group-1	group-1	Test 1 From Group-1
+5	Group-2	group-2	Group-2 TEXT
+6	Test group	test-slug	Test text description
+\.
+
+
+--
+-- Data for Name: posts_post; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.posts_post (id, text, pub_date, author_id, group_id, image) FROM stdin;
+4	[Бухарест.] Во время перехода отъ Силистріи къ Маю я ѣздилъ въ Букарестъ. Я игралъ и принужденъ былъ занимать деньги. Положеніе унизительное для каждаго и для меня въ особенности. Написалъ письма: тетинькѣ, Митѣ, Некрасову и Оськѣ. — Всё еще не знаю, за что приняться, и поэтому ничего не дѣлаю. Кажется, что лучше всего работать за романомъ Р[усскаго] П[омѣщика].	1854-06-23 00:00:00+00	2	\N	
+14	Скромности у меня нѣтъ! вотъ мой большой недостатокъ. —\n\nЧто я такое? Одинъ изъ 4-хъ сыновей отставнаго Подполковника, оставшійся съ 7 лѣтняго возраста безъ родителей подъ опекой женщинъ и постороннихъ, не получившій ни свѣтскаго, ни ученаго образованія и вышедшій на волю 17-ти лѣтъ, безъ большого состоянія, безъ всякаго общественнаго положенія и, главное, безъ правилъ; человѣкъ, разстроившій свои дѣла до послѣдней крайности, безъ цѣли и наслажденія проведшій лучшія года своей жизни, наконецъ изгнавшій себя на Кавказъ, чтобъ бѣжать отъ долговъ и, главное, привычекъ, а оттуда, придравшись къ какимъ-то связямъ, существовавшимъ между его отцомъ и Командующимъ арміей, перешедшій въ Дунайскую армію 26 лѣтъ, прапорщикомъ, почти безъ средствъ кромѣ жалованья (потому что тѣ средства, которыя у него есть, онъ долженъ употребить на уплату оставшихся долговъ), безъ покровителей, безъ умѣнья жить въ свѣтѣ, безъ знанія службы, безъ практическихъ способностей; но — съ огромнымъ самолюбіемъ! Да, вотъ мое общественное положеніе. Посмотримъ, что такое моя личность. —\n\nЯ дуренъ собой, неловокъ, нечистоплотенъ и свѣтски необразованъ. — Я раздражителенъ, скученъ для другихъ, нескроменъ, нетерпимъ (intolérant) и стыдливъ, какъ ребенокъ. — Я почти невѣжда. Что я знаю, тому я выучился кое какъ самъ, урывками, безъ связи, безъ толку и то такъ мало. — Я невоздерженъ, нерѣшителенъ, непостояненъ, глупо-тщеславенъ и пылокъ, какъ всѣ безхарактерные люди. Я не храбръ. Я неакуратенъ въ жизни и такъ лѣнивъ, что праздность сдѣлалась для меня почти неодолимой привычкой. — Я уменъ, но умъ мой еще никогда ни на чемъ не былъ основательно испытанъ. У меня нѣтъ ни ума практическаго, ни ума свѣтскаго, ни ума дѣловаго. — Я честенъ, т. е. я люблю добро, сдѣлалъ привычку любить его; и когда отклоняюсь отъ него, бываю недоволенъ собой и возвращаюсь къ нему съ удовольствіемъ; но есть вещи, который я люблю больше добра — славу. Я такъ честолюбивъ и такъ мало чувство это было удовлетворено, что часто, боюсь, я могу выбрать между славой и добродѣтелыо первую, ежели бы мнѣ пришлось выбирать изъ нихъ. ______________\n\nДа, я не скроменъ; оттого то я гордъ въ самомъ себѣ, а стыдливъ и робокъ въ свѣтѣ. ______________\n\nУтромъ писалъ эту страницу и читалъ Louis Philipp’a. Послѣ обѣда уже очень поздно началъ писать 3[аписки] Ф[еерверкера] и до вечера написалъ довольно много несмотря на то, что у меня были Олхинъ и Андроповъ. Послѣ ухода Андроп[ова] ю я облокотился на балконъ и глядѣлъ на свой любимый фонарь, который такъ славно свѣтитъ сквозь дерево. Притомъ же послѣ нѣсколькихъ грозовыхъ тучь, которыя проходили и мочили нынче землю, осталась одна большая, закрывавшая всю южную часть неба и какая-то пріятная легкость и влажность въ воздухѣ.\n\nХозяйская хорошенькая дочка также, какъ я, лежала въ своемъ окнѣ, облокотившись на локти. По улицѣ прошла шарманка, и когда звуки добраго стариннаго вальса, удаляясь все больше и больше, стихли совершенно, дѣвочка до глубины души вздохнула, приподнялась и быстро отошла отъ окошка. Мнѣ стало такъ грустно — хорошо, что я невольно улыбнулся и долго еще смотрѣлъ на свой фонарь, свѣтъ котораго заслоняли иногда качаемыя вѣтромъ вѣтви дерева, на дерево, на заборъ, на небо, и все это мнѣ казалось еще лучше, чѣмъ прежде. —\n\nЯ долженъ упрекнуть себя нынче въ 3-хъ неосновательностяхъ: 1) что я забылъ о фортепьянахъ, 2) не позаботился о рапортѣ перевода и 3) что я ѣлъ боршъ съ поносомъ, который все усиливается. (3)	1854-07-07 00:00:00+00	2	\N	
+17	Писать не хочется, а я сказалъ уже, что принуждать себя ни къ чему не намѣренъ par parti pris. — Поэтому скажу только, что читалъ Лафонтена и Гёте, котораго начинаю день ото дню понимать лучше, и писалъ на бѣло З[аписки] Ф[еерверкера] очень мало и лѣниво, за что и дѣлаю себѣ упрекъ. (1)	1854-07-10 00:00:00+00	2	\N	
+91	Я люблю мануальное тестирование!	2022-03-21 10:09:59.594+00	8	5	
+92	Скорее бы писать автотесты!	2022-03-21 10:10:49.261+00	8	\N	
+94	dsadsa	2022-03-24 16:23:21.175+00	14	\N	
+95	ваыа	2022-03-25 09:34:27.225+00	8	4	
+96	авы	2022-03-25 09:34:53.629+00	8	\N	
+97	Добавление картинки	2022-04-13 11:00:50.377+00	8	6	posts/1018-3914x2935_fMDptJW.jpeg
+98	Тестовая картинка 2	2022-04-13 11:18:50.167+00	8	6	posts/lorem-ipsum-tekst-ryba_2QK8gT5.png
+34	Пишу въ самомъ пріятномъ веселомъ расположеніи духа, въ которомъ я провелъ весь вечеръ. Утро читалъ, объѣдался грушами и вмѣсто обѣда ѣлъ сыръ. Несмотря на кутежи у Сталыпина и Сержпутовскаго по случаю полученія наградъ, не завидовалъ, а провелъ день весело. Вечеромъ хватилъ босонож[ку] и выпилъ бокала два шампанскаго съ Шварц[емъ], Вейлеровскимъ [?] и Гембичомъ, потомъ болталъ съ Шубинымъ и съ Сашей Горчаковымъ. — Исключая праздности, днемъ своимъ очень доволенъ. (1)	1854-07-28 00:00:00+00	2	5	
+138	m,.	2022-04-19 17:19:43.044+00	8	\N	
+139	mmm	2022-04-19 20:29:28.274+00	8	\N	
+2	Начинаю новую тетрадь дневника, послѣ почти мѣсячнаго промежутка, во время котораго я такъ много переиспыталъ, перечувствовалъ, что мнѣ не было времени думать и еще меньше записывать. — Съ Кавказа я пріѣхалъ въ Тулу, видѣлъ тетокъ, сестру, Валерьяна и узналъ о своемъ производствѣ. Всѣ 3 брата и Перфильевы пріѣхали ко мнѣ и увезли меня въ Москву. Изъ Москвы я проѣхалъ въ Покровское, тамъ простился съ т[етушкой] П[елагеей] И[льиничной], В[алерьяномъ], съ Машей и Сережей. Эти 2 прощанья — особенно послѣднее — были одни изъ счастливѣйшихъ минутъ въ моей жизни. Оттуда поѣхалъ къ Митинькѣ, который почти по моему совѣту бросилъ Москву, — и черезъ Полтаву, Кишиневъ и т. д. 3-го дня пріѣхалъ въ Букарестъ. Я былъ счастливъ все это время!\n\nСлужебное положеніе мое здѣсь неопредѣленно и я уже съ недѣлю снова сомнительно болѣнъ. — Неужели снова начнется для меня пора испытаній?!\n\nВпрочемъ я самъ виноватъ, счастіе избаловало меня: я опустился и во многомъ имѣю упрекнуть себя со дня выѣзда моего изъ Курска и до сей минуты. — Грустно убѣдиться, что я не умѣлъ переносить счастія также, какъ и не умѣлъ переносить несчастія. Нынче пойду къ командиру Дивизіи въ корпусной Штабъ, сдѣлаю кой какія покупки, погуляю, и прійду домой писать письма и обѣдать. Послѣ обѣда займусь чѣмъ нибудь и передъ вечеромъ поѣду въ баню. Вечеръ просижу дома и займусь Отрочествомъ.	1854-03-14 00:00:00+00	2	\N	
+36	[Рымник.] Сдѣлалъ верхомъ переходъ до Рымника. [[5]] Старикъ все не кланяется мнѣ. Обѣ вещи эти злятъ меня. Съ встрѣчавшимися баши-бузуками велъ себя хорошо. Объяснился съ Крыжановскимъ. Онъ, не знаю зачѣмъ, совѣтуетъ мнѣ прикомандироваться къ казачьей батареѣ; совѣтъ, которому я не послѣдую. Желчно спорилъ вечеромъ съ Фриде и Бабарыкинымъ, ругалъ Сержпутовскому и ничего не сдѣлалъ, вотъ 3 упрека, которыя дѣлаю себѣ за нынѣшній день. (3)	1854-07-30 00:00:00+00	2	4	
+39	Тестовый пост	2022-02-19 16:50:50.356+00	3	5	
+89	test!	2022-03-18 19:41:02.451+00	8	4	
+93	Test post	2022-03-24 15:46:02.447+00	8	6	
+5	Съ утра сѣлъ за работу; но ничего не сдѣлалъ и радъ былъ, когда мнѣ пришолъ помѣшать Горчаковъ. Послѣ обѣда у Генер[ала] читалъ Беран[же], ѣздилъ къ Доктору, который объявилъ мнѣ, что мнѣ должно дѣлать операцію и лечиться мѣсяца полтора и болталъ до ночи съ Шубинымъ о нашемъ русскомъ рабствѣ. Правда, что рабство есть зло, но зло чрезвычайно милое. __________	1854-06-24 00:00:00+00	2	\N	
+18	Перечитывалъ Героя нашего времени, читалъ Гёте и только передъ вечеромъ написалъ очень мало. Почему? Лѣнь, нерѣшительность и страсть смотрѣть свои усы и фистулы. За что и дѣлаю себѣ 2 упрека. Нынче Бабарыкину, который былъ тутъ и ѣдетъ къ Генералу, поручилъ свой рапортъ о переводѣ. Еще упрекъ за то, что посмѣялся надъ Олхинымъ при Бабарыкинѣ. (3)	1854-07-11 00:00:00+00	2	\N	
+3	Ровно 3 мѣсяца промежутка. — 3 мѣсяца праздности и жизни, которой я не могу быть доволенъ. — Недѣли три я былъ у Шейдемана и жалѣю, что не остался. Съ офицерами бы я ладилъ, и съ батар[ейнымъ] команд[иромъ] умѣлъ бы устроиться. За то дурное общество и затаенная злоба отъ своего неблестящаго положенія хорошо бы подѣйствовали на меня. Я сердился бы, скучалъ, старался бы подняться морально надъ своимъ положеніемъ и сталъ бы лучше — работалъ бы. — Откомандированіе меня въ Штабъ пришло въ то самое время, когда я поссорился съ батарейнымъ командиромъ, и польстило моему тщеславію. — Болѣзнь моя, во время которой я не могъ даже вернуться на старую колею занятій и честнаго труда съ одной цѣлью добра, — доказала мнѣ, до какой степени я испортился. Чѣмъ выше я становлюсь въ общественномъ мнѣніи, тѣмъ ниже я становлюсь въ собственному Я имѣлъ нѣсколько разъ женщинъ, лгалъ, тщеславился и, что всего ужаснѣе, подъ огнемъ велъ себя не такъ, какъ надѣялся отъ самаго себя.____\n\nОсада Силистріи снята, я еще не былъ въ дѣлѣ, положеніе мое въ кругу товарищей и начальство хорошо, несмотря на остаток б[.....] и ранки, здоровье мое порядочно и въ моральномъ отношеніи я твердо рѣшился посвятить свою жизнь пользѣ ближняго. Въ послѣдній разъ говорю себѣ:\nЕжели пройдетъ 3 дня, во время которыхъ я ничего не сдѣлаю для пользы людей, я убью себя. —  Помоги мнѣ Господи._________\nДо обѣда пишу письма: Сережѣ и теткамъ, Волконской, ежели успѣю. Послѣ обѣда продолжаю записки Феерверкера. __________	1854-06-15 00:00:00+00	2	\N	
+6	День ото дня откладывалъ операцію, ожидая перехода въ Букарестъ; a здѣсь откладывалъ, ожидая квартиры и Доктора. Въ Журжѣ были дѣла, въ кот[орыхъ] бы я могъ быть, ежели бы былъ здоровъ. Денегъ нѣтъ ни гроша и я долженъ. Валер[ьянъ] пишетъ въ письмѣ, кот[орое] я получилъ вчера, что ни лошадей, ни денегъ нѣтъ. — Намѣренъ лечиться серьезно. Мнѣ хочется пожить беззаботно и весело, не знаю, что выйдетъ изъ этаго желанія.	1854-06-29 00:00:00+00	2	\N	
+7	Сегодня мнѣ сдѣлали операцію съ клороформомъ — я былъ малодушенъ. Ничего не дѣлалъ отъ невозможности. Есть надежда выздоровѣть. —	1854-06-30 00:00:00+00	2	\N	
+8	Написалъ письмо Валерьяну и Оголину. Здоровье ни лучше, ни хуже, живу одинъ, читаю, но за работы не принимаюсь, хотя Зап[иски] Феер[веркера] сильно искушаютъ меня. ________	1854-07-01 00:00:00+00	2	\N	
+9	Читалъ Gilbert и Gilberte. Здоровье все statu quo.\n\n— Зап[иски] Феер[веркера] все болѣе болѣе опредѣляются, нынче, 3-го І[юля], кажется, займусь.	1854-07-02 00:00:00+00	2	\N	
+10	Цѣлый день читалъ, работа никакъ не хочетъ идти. Вечеромъ болталъ съ Пруш[инскимъ?], Олх[инымъ] и Антроп[овымъ]. Проигралъ глупо Пруш[инскому] porte-feuille Полинькинъ и несмотря на его отговорки от далъ ему. Невольно, какъ только я остаюсь одинъ и обдумываю самаго себя, я возвращаюсь къ прежней мысли — мысли объ усовершенствованіи; но главная моя ошибка — причина, по которой я не могъ спокойно идти по этой дорогѣ — та, что я усовершенствованіе смѣшивалъ съ совершенствомъ. Надо прежде понять хорошенько себя и свои недостатки и стараться исправлять ихъ, а не давать себѣ задачей — совершенство, котораго не только невозможно достигнуть съ той низкой точки, на которой я стою, но при пониманіи котораго пропадаетъ надежда на возможность достиженія. Тоже, что было со мной въ хозяйствѣ, въученьи, въ литературѣ, въ жизни. — Въ хозяйствѣ я хотѣлъ достигнуть совершенства и забывалъ, что прежде нужно было исправить несовершенства, которыхъ слишкомъ много, хотѣлъ правильнаго раздѣленія полей, когда мнѣ нечѣмъ было ихъ удабривать и сѣять. —\n\nНужно взять себя такимъ, какимъ есть, и исправимые недостатки стараться исправить, хорошая же натура поведетъ меня къ добру безъ книжки, которая столько времени была моимъ кошмаромъ. — Я одинъ изъ тѣхъ характеровъ, которые, желая, отъискивая и готовые на все прекрасное, неспособны именно по этому къ постоянно-хорошему.	1854-07-03 00:00:00+00	2	\N	
+11	Главные мои недостатки. 1) Неосновательность (подъ этимъ я разумѣю: нерѣшительность, непостоянство и непослѣдовательность. 2) Непріятный тяжелый характеръ, раздражительность, излишнее самолюбіе, тщеславіе. 3) Привычка къ праздности. — Буду стараться постоянно наблюдать за этими 3 основными пороками и записывать всякій разъ, что буду впадать въ нихъ. — Уже нынче я спорилъ съ Антропов[ымъ] о томъ, должно ли или нѣтъ ему ѣхать въ Журжу, съ раздраж[ительностью] и излишнимъ самолюбіемъ. —\n\nЯ обѣдалъ дома довольно спокойно, хорошо и дешево. Бартоломей обѣщалъ было читать со мной Pictures from Italy, но бѣдняжка нашелъ, что это слышкомъ скучно, и поэтому мы сочли за лучшее болтать съ нимъ до поздняго вечера. — Онъ, кажется, добрый и съ хорошимъ направленіемъ мальчикъ; но молодъ.....\n\nЗдоровье мое какъ будто лучше, но боюсь еще вѣрить. — Былъ неосноват[еленъ] съ Новережскимъ, не кончивъ дѣла о рапортѣ; раздражителенъ съ Антроповымъ и — увы — опять лѣнился, ничего не сдѣлалъ, кромѣ этой страницы дневника. Получилъ письмо отъ тетки и Митиньки, на которое завтра надо будетъ отвѣтить. (3)	1854-07-04 00:00:00+00	2	\N	
+20	Съ утра чувствовалъ въ головѣ тяжесть и не могъ преодолѣть себя, чтобы заниматься. Весь день читалъ Современникъ. Эсфирь (Холодный домъ) говоритъ, что дѣтская молитва ея состояла въ обѣщаніи, которое она дала Богу 1) всегда быть трудолюбивой, 2) чистосердечной, 3) довольной и 4) стараться снискивать любовь всѣхъ окружающихъ ее.\n\nКакъ просты, какъ милы, удобоисполнимы и велики эти 4 правила. Вечеромъ позвалъ къ себѣ Антропова, чтобы взять денегъ, и спорилъ съ нимъ, т. е. присутствіе его возбуждало мои мысли. Я люблю это, хотя къ этому примѣшивается всегда непріятное и дурное чувство, что онъ не можетъ оцѣнить моихъ мыслей. Зашелъ и Шубинъ съ своимъ тщеславно униженнымъ лицомъ и взглядомъ на вещи. За что я это написалъ? Не знаю. — Упрекаю себя за лѣнь. (1)	1854-07-12 00:00:00+00	2	\N	
+12	Читалъ во время чаю, обѣда и десерта, утро же все писалъ одно письмо тетинькѣ, которое пошлю, несмотря на то, что французскій слогъ его мнѣ очень не нравится. — Миѣ со дня на день становится труднѣе объясняться и писать по французски, надо же эту глупую манеру писать и говорить на языкѣ, который плохо знаешь! — А сколько хлопотъ, потеряннаго времени, неясности въ мысляхъ и нечистоты въ природномъ языкѣ изъ за этой манеры, а необходимо!\n\nВечеромъ написалъ съ главу Зап[исокъ] Феерв[еркера] съ увлеченіемъ и порядочно. Олхинъ 2 раза былъ у меня, чего мнѣ совершенно ненужно записывать, потому что чудесныя выраженія глупости, которыя вырывались у него, я не запомню оттого, что запишу ихъ. — Поѣлъ фруктовъ, несмотря на поносъ, и поручилъ Олхину нанять фортепьяно, вотъ двѣ ошибки противъ основательности. Главный мой недостатокъ состоитъ въ недостаткѣ терпимости къ себѣ и другимъ. Это не правило, а мысль, которую почему не записать сюда. Она напомнить черезъ нѣсколько времени то моральное состоите, въ которомъ я находился 5-го Іюля 1854 года. (2)	1854-07-05 00:00:00+00	2	\N	
+13	Цѣлый день читалъ то Лермонтова], то Гёте, то Alphonse Karr’a и не могъ приняться за дѣло. — Какъ я не говорю, что я не честолюбивъ, и сколько ни стараюсь быть искреннимъ въ этомъ, le bout de l’oreille se montre malgré moi.\n\nМнѣ непріятно было узнать сегодня, что Осипъ Сержпут[овскій] контуженъ и о немъ донесено: Государю. Зависть.... и изъ за какой пошлости и къ какой дряни!\n\nНынче весь день былъ день непріятныхъ воспоминаній. То воспоминаніе о долгѣ Зубкову мучало меня. (Насчетъ его я было раздумалъ переходъ въ конную артиллерію, по потомъ рѣшился, оставивъ дѣло, какъ есть, ждать до 55-го года.) То воспоминаніе о томъ, что я будто слишкомъ много позволялъ своему Генералу, мучало меня. Обдумавъ хорошенько, выходить напротивъ, что я слишкомъ много себѣ позволялъ съ нимъ. — Чтобы естественно быть гордымъ (fier) надо или быть дуракомъ (чѣмъ я не могу быть), или быть довольнымъ собою, за чѣмъ я не былъ со времени своего пріѣзда въ армію. За нынѣшній [день] 2 упрека я могу и долженъ себѣ сдѣлать: 1) непростительная цѣлый день лѣнь и слѣдствіе ея — праздность и 2) просьба къ (Олхину о фортепьяно, на что у меня нѣтъ достаточно денегъ.) (1)	1854-07-06 00:00:00+00	2	\N	
+15	Утромъ читалъ и писалъ немного. Вечеромъ побольше, но все не только безъ увлеченія, но съ какою-то непреодолимой лѣнью. Рѣшился не брать фортепьянъ и отвѣтилъ Олхину, что у меня денегъ нѣтъ, чѣмъ онъ вѣрно обидѣлся, тѣмъ болѣе, что я подписалъ просто «весь вашъ». Открылъ я нынче еще поэтическую вещь въ Лермантовѣ и Пушкинѣ; въ первомъ Умирающій гладіаторъ. (Эта предсмертная мечта о домѣ удивительно хороша) и во второмъ Янко Марнавичь, который убилъ нечаянно своего друга. Помолившись усердно и долго въ Церкви, онъ пришелъ домой и легъ на постель. Потомъ онъ спросилъ у женѣ, не видитъ ли она чего нибудь въ окнѣ, она отвѣчала, что нѣтъ. Онъ еще разъ спросилъ, тогда жена сказала, что видитъ за рѣкой огонекъ; когда онъ въ третій разъ спросилъ, жена сказала, что видитъ — огонекъ сталъ побольше и приближается. Онъ умеръ. — Это восхитительно! А отчего? Подите объясняйте послѣ этаго поэтическое чувство. —	1854-07-08 00:00:00+00	2	\N	
+16	Утро и цѣлый день провелъ, то пиша З[аписки] Ф[еерверкера], которыя, между прочимъ, кончилъ, но которыми такъ не доволенъ, что едва ли не придется передѣлать все за ново или вовсе бросить, но бросить не однѣ З[аписки] Ф[еерверкера], но бросить все литераторство; потому что ежели вещь, казавшаяся превосходною въ мысли — выходитъ ничтожна на дѣлѣ, то тотъ, который взялся за нее, не имѣетъ таланта. То читалъ Гёте, Лермонтова и Пушкина. Перваго я плохо понимаю, да и не могу, какъ ни стараюсь, перестать видѣть смѣшное (du ridicule) въ нѣмецкомъ языкѣ. Во второмъ я нашелъ начало Измаилъ-бея весьма хорошимъ. Можетъ быть это показалось мнѣ болѣе потому, что я начинаю любить Кавказъ, хотя посмертной, но сильной любовью. Дѣйствительно хорошъ этотъ край дикой, въ которомъ такъ странно и поэтически соединяются двѣ самыя противуположныя вещи — война и свобода. — Въ Пушкинѣ же меня поразили Цыгане, которыхъ, странно, я не понималъ до сихъ поръ.\nДевизою моего дневника должно быть «non ad probandum, sed ad narrandum».	1854-07-09 00:00:00+00	2	\N	
+19	Утромъ Олхинъ пришелъ мнѣ объявить, что онъ ѣдетъ въ Леово, и хотѣлъ поручить своихъ лошадей и вещи, отъ чего я невольно отдѣлался, сказавъ ему, что у меня нѣтъ денегъ. — Въ самомъ дѣлѣ я опять въ самомъ затруднительномъ денежномъ положеніи: ни копейки, по крайней мѣрѣ до половины Августа, не предвидится ни откуда, исключая фуражныхъ, и долженъ Доктору. Не предвидится, я говорю, потому что нынче получилъ Современникъ и убѣжденъ, что рукописи мои сидятъ гдѣ нибудь въ таможнѣ. Это дѣло я разъясню, какъ выздоровлю. Вечеромъ я имѣлъ случай испытать воображаемость своего перерожденія къ веселой жизни. Хозяйская прехорошенькая замужняя дочь, которая безъ памяти глупо кокетничала со мной, подѣйствовала на меня — какъ я ни принуждалъ себя — какъ и в старину, т. е. я страдалъ ужасно отъ стыдливости.\n\nНынче въ разговорѣ съ Докторомъ изчезъ глупый — и несправедливый взглядъ, который я имѣлъ на Валаховъ — взглядъ, общій всей арміи и заимствованный мной отъ дураковъ, съ которыми я до сихъ поръ водился. — Судьба этаго народа мила и печальна. Читалъ я нынче и Гёте и Лермантова драму, въ которой нашелъ много новаго, хорошаго, и Холодный домъ Дикенса. Вотъ ужъ 2-й день, что я покушаюсь сочинять стихи. Посмотримъ, что изъ этаго выйдетъ. —\n\nУпрекнуть долженъ себя нынче только за лѣнь, хотя писалъ и обдумалъ впередъ много хорошаго, но слишкомъ мало и лѣниво. (1)	1854-07-11 00:00:00+00	2	\N	
+21	Моя молитва. «Вѣрую во единаго всемогущаго и добраго Бога, въ безсмертіе души и въ вѣчное возмездіе по дѣламъ нашимъ; желаю вѣровать въ религію отцовъ моихъ и уважаю ее». ——\n\n«Отче нашъ» и т. д. «За упокой и за спасеніе род[ителей]». «Благодарю тебя, Господи за милости Твои, за то... за то и за то. (При этомъ вспомни все, что было для тебя счастливаго.) Прошу, внуши мнѣ благія предпріятія и мысли, и дай мнѣ счастія и успѣха въ нихъ. — Помоги мнѣ исправляться отъ пороковъ моихъ; избави меня отъ болѣзней, страданій, ссоръ, долговъ и униженій. —\n\nДаруй мнѣ въ твердой вѣрѣ и надеждѣ на Тебя, въ любви къ другимъ и отъ другихъ съ спокойной совѣстью и пользой для ближняго жить и умереть. Даруй мнѣ творить добро и избѣгать зла; но будетъ со мной добро или зло, да будетъ пресвятая воля твоя! Даруй мнѣ добра, истиннаго! Г[оспо]ди помилуй! Г[оспо]ди помилуй, Г[оспо]ди помилуй! —\n\nУтро очень позднее, потому что всталъ въ 10, читалъ о Черногоріи, писалъ немного и болталъ съ товарищами, которые зашли ко мнѣ. Послѣ обѣда долженъ былъ принуждать себя, чтобы написать немного и не отчетливо. Часовъ въ 9 пріѣхалъ Бартоломей, съ нимъ я выѣхалъ въ первый разъ, былъ въ Херестреу и болталъ до 12. Могъ бы упрекнуть себя за лѣнь, но принявъ во вниманіе стараніе и болѣзнь — прощаю, но —подлость, когда я попросилъ Доктора разрѣзать мнѣ дырочку и потомъ испугался и просилъ отложить, стоитъ палокъ, плетей. (1)	1854-07-13 00:00:00+00	2	\N	
+22	Утромъ, кромѣ обыкновенная чтенія Гёте и подвертывавшихся книжонокъ, написалъ Жданова, но насчетъ личности Велинчука все еще не рѣшился. — Нынче опять рѣзали мнѣ пахъ и опять я принималъ клороформъ. Впечатлѣніе было ужъ не такъ непріятно, но такъ странно — я слышалъ звонъ инструментовъ, но не слыхалъ боли. Вечеръ сидѣли у меня Новережскій, Шубинъ и Антроповъ. Получилъ письмо отъ старосты: Цвѣтковъ Терентій и 2 дворовые пойдутъ въ рекр[уты], выборъ хорошъ. Старый Башибузукъ непремѣнно хочетъ, прежде чѣмъ пустить въ ходъ мой переводъ, извѣстить о томъ Князя. Не подумать ли мнѣ о этомъ переводѣ? Можетъ быть я не переработаю свой характеръ, a сдѣлаю только одну и важную глупость изъ желанія переработать его. Есть-ли нерѣшительность капитальной недостатокъ — такой, отъ котораго нужно исправляться? Не есть ли два рода характеровъ одинаково достойные: одни рѣшительные, другіе обдуманные? Не принадлежу [ли] я къ послѣднимъ? И желаніе мое исправиться не есть ли желаніе быть тѣмъ, чѣмъ я не есмь, какъ говоритъ A[lphonse] Karr. Мнѣ кажется, что это правда. Есть недостатки болѣе положительныя (абсолютныя), какъ то лѣнь, ложь, раздражительность, эгоизмъ, которыя всегда недостатки. —————	1854-07-14 00:00:00+00	2	\N	
+23	Рано нынче разбудилъ меня Докторъ, и благодаря этому случаю, я написалъ въ утро довольно много — все передѣлывалъ старое — описаніе солдатъ. — Вечеромъ тоже пописалъ немного и читалъ Verschwörung von Viesko. Я начинаю понимать драму вообще. Хотя въ этомъ я иду совершенно противуположнымъ путемъ большинству, я доволенъ этимъ какъ средствомъ, дающимъ мнѣ новое поэтическое наслажденіе. Послѣ чая зашелъ ко мнѣ Шубинъ, Тишкевичъ и Вержбицкій, который много интереснаго мнѣ прекрасно разсказывалъ про дѣло подъ Слободзеей. Я очень недоволенъ собой, первое за то, что срывалъ цѣлый день прыщи, которыми у меня покрыто лицо и тѣло и носъ, что начинаетъ мучить меня, и второе, за глупое бѣшенство, которое вдругъ напало на меня за обѣдомъ на Алешку. (2) ————————————————	1854-07-15 00:00:00+00	2	\N	
+24	Съ 10 часовъ до 2 писалъ пристально и окончилъ описаніе солдатъ; за то дальше идетъ туго. Былъ вечеромъ у меня Д. Горчаковъ, и дружба, которую онъ показалъ мнѣ, произвела это славное замираніе сердца, которое производитъ во мнѣ истинное чувство и котораго я давно не испытывалъ. Потомъ заѣхалъ Бартоломей, и я вѣрно обидѣлъ его немного тѣмъ, что сказалъ, что у него дурной выговоръ. Пора мнѣ перестать водиться съ молодежью, хотя я никогда и не водился съ ней хорошенько, какъ другіе; но дѣло въ томъ, что теперь мнѣ легче и пріятнѣе быть съ стариками, чѣмъ съ очень молодыми людьми. Здоровье такъ сякъ. Забылъ записать что-то хорошее или важное — не помню. Упрекаю себя нынче только за Бартоломея. ——————	1854-07-16 00:00:00+00	2	\N	
+25	Обѣдъ мой не удался: ни Горчаковъ, ни Докторъ не могли быть. Одинъ Бартоломей ѣлъ моего поросенка и восхищался Шиллеромъ. — До обѣда читалъ, послѣ обѣда читалъ и — странная вещь — заснулъ до 8 часовъ, такъ что цѣлый день ничего не сдѣлалъ. — Новережскій привезъ мнѣ 45 р., изъ кот[орыхъ] я намѣренъ дать 40 доктору, а на остальные, призанявши еще у Горчакова, ѣхать въ Бузео и тамъ ожидать Штаба и выздоровленія. — Много нынче заслужилъ я упрековъ. 1) За глупую фантазію и, главное, — неисполненную фантазію покупать лошадь у Николаева, и 2) за цѣлый день безъ дѣла. (2)	1854-07-18 00:00:00+00	2	\N	
+26	Вчера утро читалъ и сбирал[ся] къ отъѣзду. Вечеромъ выѣхалъ самымъ безалабернымъ и нерѣшительнымъ образомъ съ Малышевымъ въ Мара-Домняска, гдѣ и пробылъ нынѣшній день. За эти оба дня упрекаю себя 1) за нерѣшительность при выѣздѣ, 2) за раздражительность вчера утромъ съ Алешкой и 3) немножко за лѣнь вчера. — (3)	1854-07-20 00:00:00+00	2	\N	
+27	[Синешти.] Рано утромъ меня разбудили и повезли въ Синешти. Вообще недоволенъ я сегодничнымъ днемъ. — Почему-то — не отъ лѣни, а за занятіями ѣдой и палаткой, не было какъ-тο время. — Я ровно ничего не дѣлалъ, даже не читалъ. — Стою и завелъ артель съ немножко не порядочными людьми и, признаюсь, иногда жалѣю, что не въ той артели. Однако, кромѣ того, что это дастъ мнѣ время заниматься, я доволенъ и тѣмъ, что веду себя хорошо — не отталкиваю и не схожусь слишкомъ близко. Глупый старикъ опять разсердилъ меня своей манерой не кланяться. Надо будетъ дать ему шикнотку. Вчера забылъ записать удовольствіе, которое мнѣ доставилъ Шиллеръ своимъ Рудольфомъ Габсбургскимъ и нѣкоторыми мѣлкими философскими стихотвореніями. Прелестна простота, картинность и правдоподобная тихая поэзія въ первомъ. Во второмъ-же поразила меня, записалась въ душѣ, какъ говоритъ Бартоломей, мысль, что, чтобы сдѣлать что нибудь великое, нужно всѣ силы души устремить на одну точку. —\nУпреки 1) за невоздержность и нерѣшительность въ томъ, что я ѣлъ сыръ, и 2) праздность цѣлаго дня, особенно ежели я хоть немного не поработаю теперь. (2)	1854-07-21 00:00:00+00	2	\N	
+28	Опять переходъ, несмотря на который я бы былъ доволенъ сегодничнымъ днемъ, ежели-бы не глупое требованіе Кыржановскаго, чтобы я ѣхалъ въ Леово. Я ходилъ къ нему утромъ и имѣлъ слабость и глупость не разбудить его; потомъ заснулъ, пообѣдалъ и написалъ немного. Здоровье хорошо и завтра являюсь къ обоимъ Начальникамъ и подаю оба рапорта. — Упрекъ за нерѣшительность съ Крыжанов[скимъ]. (1)	1854-07-22 00:00:00+00	2	\N	
+29	Нынче съ утра ходилъ объясняться и являться къ начальству. Вышло, что Крыжановскій сказалъ, чтобы я ѣхалъ въ батарею. Тишкевичъ насплетничалъ мнѣ это, и я шелъ къ Крыж[ановскому] съ дрожащими губами. Но несмотря на всю злобу, я былъ слабъ и позволилъ замаслить это дѣло. Остальное время дня читалъ хорошенькую повѣсть Бернара и написалъ письмо Валерьяну. Меньше, чѣмъ когда, я съ дня своего выздоровленія чувствую себя способнымъ къ общежитію и равнодушно-веселому взгляду на жизнь. Подалъ другой рапортъ о переводѣ.\n\nУпрекаю себя за лѣнь. Въ цѣлый день ровно ничего не сдѣлалъ. ————— (1)	1854-07-23 00:00:00+00	2	\N	
+30	[Курешти?] Утромъ Новережскій съ подтянутой мордой принесъ мнѣ назадъ мой рапортъ съ надписью Крыжановскаго. Всѣ эти мѣлкія непріятности такъ меня разстроили, что я рѣшительно цѣлый день былъ самъ не свой, лѣнивъ, апатиченъ, не въ состояніи ни за что приняться, съ людьми молчаливъ, стыдливъ до поту. Я это испыталъ у Бабарыкина, сначала съ Зыбинымъ, Фриде и Балюзекъ, а вечеромъ съ Крыжановскимъ и Сталыпинымъ. Я слишкомъ честенъ для отношеній съ этими людьми. — Странно, что только теперь я замѣтилъ одинъ изъ своихъ важныхъ недостатковъ: оскорбительную и возбуждающую въ другихъ зависть — наклонность выставлять всѣ свои преимущества. Чтобы внушить любовь къ себѣ, напротивъ, нужно скрывать все то, чѣмъ выходишь изъ общаго разряда. Поздно я понялъ это. Не буду подавать рапорта, пока не буду въ состоянии завести лошадей, и употреблю всѣ средства для этаго. Пока не буду ни съ кѣмъ имѣть другихъ отношеній, какъ по службѣ. — Упрекаю себя за лѣнь. ——— (1)	1854-07-24 00:00:00+00	2	\N	
+31	Рано выступили изъ Курешти и всю дорогу я ужасно мучался, какъ физически — лицо у меня страшно горѣло и выметало, — такъ и морально. Такъ называемые аристократы возбуждаютъ во мнѣ зависть. Я неисправимо мелоченъ и завистливъ.\n\nПослѣ обѣда я зашелъ къ старику и засталъ у него кампанію Адъют[антовъ] Фельдм[аршала], въ которой мнѣ было невыносимо тяжело. Потомъ Салтыковъ, когда я 3-й разъ вспоминалъ, гдѣ мы съ нимъ видѣлись, сказалъ мнѣ, что «это было тогда, когда мы съ вами дни проводили вмѣстѣ». Это никогда не было. И это было для меня во время безсонной ночи, которую я проводилъ нынче, однимъ изъ тѣхъ воспоминаній, при кот[орыхъ] вскрикиваешь. Вечеромъ съ Ферзеномъ я зашелъ къ нимъ и, не говоря уже про Сухтелена, котораго я долженъ былъ заставить поклониться мнѣ, веселый Корсаковъ, который славно поетъ цыганскія пѣсни, навелъ на меня ужасную тоску и зависть. Въ заключеніи всего, я даже съ Тышкевичемъ такъ жолчно заспорилъ о какой-то глупости, что оскорбилъ его. Какой это ничтожный человѣкъ! подумали бы тѣ, кот[орые] прочли бы эту страницу. — «Несчастный, испорченный нравъ!!» И неужели нельзя поправить его? Найдти зло, говорятъ, уже есть половина дороги къ исправленію. Сколько времени и искренно я бьюсь изъ за этаго и все тщетно. Быть всегда довольнымъ, скромнымъ и трудолюбивымъ, вотъ чудныя правила! Коли бы я могъ слѣдовать имъ! Пора бы отчаяться въ исправленіи, а я все надѣюсь, все стараюсь.\n\nУпрекаю себя 1) за лѣнь, 2) за двоякую нескромность, совершенно противуположную съ Адъ[ютантами] Ф[ельдмаршала] и съ Тышкевичемъ.	1854-07-25 00:00:00+00	2	\N	
+32	[Бузео.] Опять переходъ — до Бузео. Баши-бузуки — какъ нарочно, согласились быть особенно милыми, но во мнѣ было слишкомъ много жолчи. Я дичился. И опять оскорбилъ Тышкевича. — Вообще рѣдко помню, чтобы я, во всѣхъ отношеніяхъ, былъ въ такомъ ужасномъ положеніи, какъ теперь. Болѣнъ, раздраженъ, совершенно одинокъ, — я всѣмъ съумѣлъ опротивѣть, — въ самомъ нерѣшительномъ и дурномъ служебномъ положеніи и безъ денегъ. — Нужно выйдти изъ этаго положенія. — Лечиться пристальнѣе, перетерпѣть непріятность новаго сближенія съ товарищами. Объясниться о службѣ съ Генераломъ или Крыжановскимъ и достать денегъ. Упрекаю 1) за лѣнь, 2) за нескромность съ Сухтеленомъ и съ Тышкевичемъ и 3) за необдуманность, недовольство и нерѣшительность къ исправленію своего положенія. ————————— (4)	1854-07-26 00:00:00+00	2	\N	
+33	Цѣлый день пробылъ на мѣстѣ, ни съ кѣмъ не видѣлся, кромѣ Тишкевича и Адъютантовъ, которые всѣ, какъ мнѣ кажется, дичатся меня, какъ disgracié.\n\nСмѣшно! Я доволенъ своимъ днемъ, ежели бы не лѣнь и не 2 дѣвки у хозяйки, которымъ я не могъ рѣшиться слова сказать и два часа ходилъ около дома. Кое какія мысли приходили въ голову, но я чувствую, какъ память притупляется, любовь и уваженіе и довѣріе къ уму исчезаютъ и я падаю въ мірѣ идеальномъ, не подвигаясь вслѣдствіе этого — какъ бы это должно было быть — въ мірѣ практическом. Именно одна изъ мыслей, по случаю которой мнѣ пришло въ голову это разсужденіе, было то, что — снискивать любовь ближняго напрасно. У Дик[енса] стоитъ наравнѣ съ другими правилами; это не можетъ быть правиломъ основнымъ, потому что оно сложно и состоитъ изъ многихъ. — А впрочемъ, несмотря на это, оно понятнѣе, всегда памятнѣе и какъ то ближе сердцу, чѣмъ другія правила основныя, какъ быть скромнымъ, довольнымъ, чистосердечнымъ.\n\nУпрекаю себя нынче 1) за праздность; потому что нынѣшній день, сколько бы я не старался оправдать себя, одинъ изъ тѣхъ, въ которыхъ, я долженъ признаться, я ровно ничего не сдѣлалъ. — Не оставилъ по себѣ никакого слѣда, и 2) за ребяческую нерѣшительность съ дѣвками. —————— (2)	1854-07-27 00:00:00+00	2	\N	
+35	Исправленіе мое идетъ прекрасно. Я чувствую, какъ отношенія мои становятся пріятны и легки съ людьми всякаго рода, съ тѣхъ поръ какъ я рѣшился быть скромнымъ и убѣдился въ томъ, что казаться всегда величественнымъ и непогрѣшнымъ вовсе не есть необходимость. Я очень веселъ. И дай Богъ, какъ мнѣ кажется, — чтобы веселье это происходило отъ самаго меня; отъ желаній всѣмъ быть пріятнымъ, скромности, необидчивости и внимательности за вспышками. — Тогда бы я всегда былъ веселъ и почти всегда счастливъ. Утромъ рѣшилъ было сидѣть дома, позаниматься, но дѣло не пошло и не утерпѣлъ вечеромъ, чтобы не пойдти пошляться.\n\nИдя отъ ужина, мы съ Тишк[евичемъ] остановились у бардели и насъ накрылъ Крыжановскій, что, признаюсь, было мнѣ не совсѣмъ пріятно. Упрекаю себя за безхарактерность, что не высидѣлъ дома, и зa праздность цѣлаго дня. Это главный пунктъ. (2)	1854-07-29 00:00:00+00	2	5	
+37	[Фокшаны.] Еще переходъ до Фокшанъ, во время котораго я ѣхалъ съ Монго. Человѣкъ пустой, но съ твердыми, хотя и ложными убѣжденіями. Генерал[у] по этому должно быть случаю, угодно было спрашивать о моемъ здоровьи. Свинья! К[о]вырялъ носъ и ничего не написалъ — вотъ 2 упрека за нын[ѣшній] день. Послѣдній упрекъ становится слишкомъ частъ, хотя походъ и можетъ служить въ немъ отчасти извиненіемъ. Отношенія мои съ товарищами становятся такъ пріятны, что мнѣ жалко бросить штабъ. Здоровье кажется (2) лучше. 	1854-07-31 00:00:00+00	2	4	
+38	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\r\n\r\nWhy do we use it?\r\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).	2022-02-17 15:14:03.381+00	3	4	
+\.
+
+
+--
+-- Data for Name: thumbnail_kvstore; Type: TABLE DATA; Schema: public; Owner: yatube_user
+--
+
+COPY public.thumbnail_kvstore (key, value) FROM stdin;
+sorl-thumbnail||image||0a52ab866862dc325484d868a297ee49	{"name": "posts/1018-3914x2935.jpeg", "storage": "django.core.files.storage.FileSystemStorage", "size": [1195, 501]}
+sorl-thumbnail||image||0acb23325913b65bfb14ea82bb133af9	{"name": "cache/f3/d8/f3d8106179e473df5a46402f33e8fbfe.jpg", "storage": "django.core.files.storage.FileSystemStorage", "size": [960, 339]}
+sorl-thumbnail||image||14a6983c33ab78d88308b102a2f7d87c	{"name": "posts/1018-3914x2935_fMDptJW.jpeg", "storage": "django.core.files.storage.FileSystemStorage", "size": [1195, 501]}
+sorl-thumbnail||image||17cc1b7acf96a26c7e5e8f86897cb151	{"name": "posts/2.jpeg", "storage": "django.core.files.storage.FileSystemStorage", "size": [1195, 501]}
+sorl-thumbnail||image||27647d0e0987195737932792925ea62f	{"name": "posts/1.jpeg", "storage": "django.core.files.storage.FileSystemStorage", "size": [1195, 501]}
+sorl-thumbnail||image||322573f935691bedc3290958d59eb7f0	{"name": "cache/df/1f/df1f5f0ddcae4eeea24f7eb3cc6ad499.jpg", "storage": "django.core.files.storage.FileSystemStorage", "size": [960, 339]}
+sorl-thumbnail||image||352baf41ff6a1da76da71647a9f54330	{"name": "posts/\\u0421\\u043d\\u0438\\u043c\\u043e\\u043a_\\u044d\\u043a\\u0440\\u0430\\u043d\\u0430_2022-03-28_\\u0432_21.15.38.png", "storage": "django.core.files.storage.FileSystemStorage", "size": [1582, 1154]}
+sorl-thumbnail||image||3d14db48209ae969f01b41f33db2e424	{"name": "cache/97/a9/97a9db136750fc2272b31752d66931a4.jpg", "storage": "django.core.files.storage.FileSystemStorage", "size": [960, 339]}
+sorl-thumbnail||image||49d8865ac494fe046a6fe567ea54a95b	{"name": "cache/91/85/91850ca00849b43b733d8f3bf212a4f1.jpg", "storage": "django.core.files.storage.FileSystemStorage", "size": [960, 339]}
+sorl-thumbnail||image||526dad6480e07d3cfc3bd054cfdf7419	{"name": "cache/42/26/4226d087cd0bd2bc559dc16a09069edd.jpg", "storage": "django.core.files.storage.FileSystemStorage", "size": [960, 339]}
+sorl-thumbnail||thumbnails||0a52ab866862dc325484d868a297ee49	["3d14db48209ae969f01b41f33db2e424"]
+sorl-thumbnail||image||616b171849bbac87796f555714921484	{"name": "posts/lorem-ipsum-tekst-ryba_8vvyLJQ.png", "storage": "django.core.files.storage.FileSystemStorage", "size": [750, 480]}
+sorl-thumbnail||image||6397d0e5c7593cf44268873fcd30c4c7	{"name": "posts/1018-3914x2935_clBe8wX.jpeg", "storage": "django.core.files.storage.FileSystemStorage", "size": [1195, 501]}
+sorl-thumbnail||image||79e47d715a5a94e669bcb6dda2415e49	{"name": "cache/62/5a/625a77d0076857c35e60addd3a7b48f3.jpg", "storage": "django.core.files.storage.FileSystemStorage", "size": [960, 339]}
+sorl-thumbnail||image||8303f6be354245ddd6192396095adbb3	{"name": "cache/20/e3/20e312f7e02432e81e5dc9af1be437db.jpg", "storage": "django.core.files.storage.FileSystemStorage", "size": [960, 339]}
+sorl-thumbnail||image||99d3046b0d175b2e775b90fd956cf0a3	{"name": "posts/1018-3914x2935_uDaPJ3D.jpeg", "storage": "django.core.files.storage.FileSystemStorage", "size": [1195, 501]}
+sorl-thumbnail||image||b3a283cd9bb9e28a66206207df9ddd04	{"name": "posts/lorem-ipsum-tekst-ryba.png", "storage": "django.core.files.storage.FileSystemStorage", "size": [750, 480]}
+sorl-thumbnail||image||cf1486c82d4e75b1ebc524e7cc78def3	{"name": "cache/e2/f3/e2f3beff2cba3996992d1841e4720610.jpg", "storage": "django.core.files.storage.FileSystemStorage", "size": [960, 339]}
+sorl-thumbnail||image||d70381f67bdc1fce379aad722c9effa1	{"name": "cache/47/d3/47d363f8d065de6dca39ee4fd8d6ef76.jpg", "storage": "django.core.files.storage.FileSystemStorage", "size": [960, 339]}
+sorl-thumbnail||image||f02a96a05dfbc710bd8b4a5509fcfa43	{"name": "cache/4e/28/4e28ff0fa001f2e680dcaa4d9fd9c76c.jpg", "storage": "django.core.files.storage.FileSystemStorage", "size": [960, 339]}
+sorl-thumbnail||image||fe17a8cf33da4fbc054ef838eca4a30d	{"name": "posts/lorem-ipsum-tekst-ryba_2QK8gT5.png", "storage": "django.core.files.storage.FileSystemStorage", "size": [750, 480]}
+sorl-thumbnail||thumbnails||14a6983c33ab78d88308b102a2f7d87c	["79e47d715a5a94e669bcb6dda2415e49"]
+sorl-thumbnail||thumbnails||17cc1b7acf96a26c7e5e8f86897cb151	["49d8865ac494fe046a6fe567ea54a95b"]
+sorl-thumbnail||thumbnails||27647d0e0987195737932792925ea62f	["f02a96a05dfbc710bd8b4a5509fcfa43"]
+sorl-thumbnail||thumbnails||352baf41ff6a1da76da71647a9f54330	["d70381f67bdc1fce379aad722c9effa1"]
+sorl-thumbnail||thumbnails||616b171849bbac87796f555714921484	["cf1486c82d4e75b1ebc524e7cc78def3"]
+sorl-thumbnail||thumbnails||6397d0e5c7593cf44268873fcd30c4c7	["526dad6480e07d3cfc3bd054cfdf7419"]
+sorl-thumbnail||thumbnails||99d3046b0d175b2e775b90fd956cf0a3	["0acb23325913b65bfb14ea82bb133af9"]
+sorl-thumbnail||thumbnails||b3a283cd9bb9e28a66206207df9ddd04	["8303f6be354245ddd6192396095adbb3"]
+sorl-thumbnail||thumbnails||fe17a8cf33da4fbc054ef838eca4a30d	["322573f935691bedc3290958d59eb7f0"]
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 44, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 14, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 134, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 11, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 29, true);
+
+
+--
+-- Name: posts_comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.posts_comment_id_seq', 17, true);
+
+
+--
+-- Name: posts_follow_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.posts_follow_id_seq', 11, true);
+
+
+--
+-- Name: posts_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.posts_group_id_seq', 6, true);
+
+
+--
+-- Name: posts_post_id_seq; Type: SEQUENCE SET; Schema: public; Owner: yatube_user
+--
+
+SELECT pg_catalog.setval('public.posts_post_id_seq', 139, true);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: posts_comment posts_comment_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_comment
+    ADD CONSTRAINT posts_comment_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: posts_follow posts_follow_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_follow
+    ADD CONSTRAINT posts_follow_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: posts_group posts_group_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_group
+    ADD CONSTRAINT posts_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: posts_group posts_group_slug_838831b4_uniq; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_group
+    ADD CONSTRAINT posts_group_slug_838831b4_uniq UNIQUE (slug);
+
+
+--
+-- Name: posts_post posts_post_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_post
+    ADD CONSTRAINT posts_post_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: thumbnail_kvstore thumbnail_kvstore_pkey; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.thumbnail_kvstore
+    ADD CONSTRAINT thumbnail_kvstore_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: posts_follow unique_follow; Type: CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_follow
+    ADD CONSTRAINT unique_follow UNIQUE (user_id, author_id);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: posts_comment_author_id_795e4d12; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX posts_comment_author_id_795e4d12 ON public.posts_comment USING btree (author_id);
+
+
+--
+-- Name: posts_comment_post_id_e81436d7; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX posts_comment_post_id_e81436d7 ON public.posts_comment USING btree (post_id);
+
+
+--
+-- Name: posts_follow_author_id_07282e68; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX posts_follow_author_id_07282e68 ON public.posts_follow USING btree (author_id);
+
+
+--
+-- Name: posts_follow_user_id_0b8e2703; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX posts_follow_user_id_0b8e2703 ON public.posts_follow USING btree (user_id);
+
+
+--
+-- Name: posts_group_slug_838831b4_like; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX posts_group_slug_838831b4_like ON public.posts_group USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: posts_post_author_id_fe5487bf; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX posts_post_author_id_fe5487bf ON public.posts_post USING btree (author_id);
+
+
+--
+-- Name: posts_post_group_id_c91a8485; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX posts_post_group_id_c91a8485 ON public.posts_post USING btree (group_id);
+
+
+--
+-- Name: thumbnail_kvstore_key_3f850178_like; Type: INDEX; Schema: public; Owner: yatube_user
+--
+
+CREATE INDEX thumbnail_kvstore_key_3f850178_like ON public.thumbnail_kvstore USING btree (key varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: posts_comment posts_comment_author_id_795e4d12_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_comment
+    ADD CONSTRAINT posts_comment_author_id_795e4d12_fk_auth_user_id FOREIGN KEY (author_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: posts_comment posts_comment_post_id_e81436d7_fk_posts_post_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_comment
+    ADD CONSTRAINT posts_comment_post_id_e81436d7_fk_posts_post_id FOREIGN KEY (post_id) REFERENCES public.posts_post(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: posts_follow posts_follow_author_id_07282e68_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_follow
+    ADD CONSTRAINT posts_follow_author_id_07282e68_fk_auth_user_id FOREIGN KEY (author_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: posts_follow posts_follow_user_id_0b8e2703_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_follow
+    ADD CONSTRAINT posts_follow_user_id_0b8e2703_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: posts_post posts_post_author_id_fe5487bf_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_post
+    ADD CONSTRAINT posts_post_author_id_fe5487bf_fk_auth_user_id FOREIGN KEY (author_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: posts_post posts_post_group_id_c91a8485_fk_posts_group_id; Type: FK CONSTRAINT; Schema: public; Owner: yatube_user
+--
+
+ALTER TABLE ONLY public.posts_post
+    ADD CONSTRAINT posts_post_group_id_c91a8485_fk_posts_group_id FOREIGN KEY (group_id) REFERENCES public.posts_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
